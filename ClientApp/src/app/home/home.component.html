@@ -1,0 +1,45 @@
+<div *ngIf="loading">A carregar produtos...</div>
+<div *ngIf="!loading && errorMessage">{{ errorMessage }}</div>
+<div *ngIf="!loading && products?.length === 0">Nenhum produto encontrado.</div>
+<div *ngIf="!loading && products && products.length > 0">
+    <table>
+        <thead>
+            <tr>
+                <th>ID do Produto</th>
+                <th>Produto</th>
+                <th>Cor</th>
+                <th>Preço</th>
+                <th>Tamanho</th>
+                <th>Peso</th>
+                <th>Categoria</th>
+                <th>Modelo</th>
+                <th>Data de Início</th>
+                <th>Data de Fim</th>
+                <th>Data de Descontinuação</th>
+                <th>Imagem</th>
+                <th>Nome do Arquivo de Imagem</th>
+                <th>Guid da Linha</th>
+                <th>Data de Modificação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{ product.productID }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.color }}</td>
+                <td>{{ product.listPrice | currency:'USD':'symbol' }}</td>
+                <td>{{ product.size }}</td>
+                <td>{{ product.weight }} g</td>
+                <td>{{ product.productCategoryID }}</td>
+                <td>{{ product.productModelID }}</td>
+                <td>{{ product.sellStartDate | date }}</td>
+                <td>{{ product.sellEndDate | date }}</td>
+                <td>{{ product.discontinuedDate | date }}</td>
+                <td><img [src]="product.thumbNailPhoto" alt="{{ product.name }}" width="100"></td>
+                <td>{{ product.thumbnailPhotoFileName }}</td>
+                <td>{{ product.rowGuid }}</td>
+                <td>{{ product.modifiedDate | date }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
