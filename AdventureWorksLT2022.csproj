@@ -30,7 +30,7 @@
     <Folder Include="ClientApp\src\app\models\" />
     <Folder Include="ClientApp\src\app\service\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Model\" />
+    <Folder Include="Models\" />
     <Folder Include="Services\" />
     <Folder Include="Repository\" />
   </ItemGroup>
