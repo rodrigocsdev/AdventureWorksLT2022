@@ -25,8 +25,8 @@
     public class Product : IProduct
     {
         public int ProductID { get; set; }
-        public string Name { get; set; }
-        public string ProductNumber { get; set; }
+        public required string Name { get; set; }
+        public required string ProductNumber { get; set; }
         public string? Color { get; set; }
         public decimal StandardCost { get; set; }
         public decimal ListPrice { get; set; }

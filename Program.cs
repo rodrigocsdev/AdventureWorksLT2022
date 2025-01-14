@@ -12,7 +12,14 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
-builder.Services.AddSingleton(new Connection(connectionString: builder.Configuration.GetConnectionString("DefaultConnection")));
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("The connection string for 'DefaultConnection' is not configured.");
+}
+
+builder.Services.AddSingleton(new Connection(connectionString));
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
