@@ -1,33 +1,29 @@
-<div *ngIf="loading" class="loading-message">A carregar produtos...</div>
+<div *ngIf="loading" class="loading-container">
+  <div class="loading-spinner"></div>
+  <div class="loading-message">A carregar produtos...</div>
+</div>
 
 <div *ngIf="!loading && errorMessage" class="error-message">
-    {{ errorMessage }}
+  {{ errorMessage }}
 </div>
 
-<div *ngIf="!loading && paginatedProducts?.length === 0" class="no-products-message">
-    Nenhum produto encontrado.
+<div *ngIf="!loading && products?.length === 0" class="no-products-message">
+  Nenhum produto encontrado.
 </div>
 
-<div *ngIf="!loading && paginatedProducts && paginatedProducts.length > 0" class="product-list">
-    <div *ngFor="let product of paginatedProducts" class="product-card">
-        <div class="product-info">
-            <label>Produto</label>
-            <input type="text" [(ngModel)]="product.name" disabled />
-
-            <label>Preço</label>
-            <input type="number" [(ngModel)]="product.listPrice" [step]="0.01" disabled />
-
-            <label>Imagem</label>
-            <img [src]="product.thumbNailPhoto" alt="{{ product.name }}" width="100" />
-
-            <button class="buy-button">Comprar</button>
-        </div>
-    </div>
-</div>
-
-<!-- Paginação -->
-<div *ngIf="totalPages > 1" class="pagination">
-    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
-    <span>{{ currentPage }} de {{ totalPages }}</span>
-    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Próximo</button>
+<div *ngIf="!loading && products && products.length > 0" class="product-table-container">
+  <table class="product-table">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Preço</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>{{ product.listPrice | currency }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

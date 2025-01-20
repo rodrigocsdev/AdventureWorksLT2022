@@ -70,8 +70,6 @@ namespace AdventureWorksLT2022.Repositories
                                 SellStartDate = reader.GetDateTime(reader.GetOrdinal("SellStartDate")),
                                 SellEndDate = reader.IsDBNull(reader.GetOrdinal("SellEndDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("SellEndDate")),
                                 DiscontinuedDate = reader.IsDBNull(reader.GetOrdinal("DiscontinuedDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("DiscontinuedDate")),
-                                ThumbNailPhoto = reader.IsDBNull(reader.GetOrdinal("ThumbNailPhoto")) ? null : (byte[])reader["ThumbNailPhoto"],
-                                ThumbnailPhotoFileName = reader.IsDBNull(reader.GetOrdinal("ThumbnailPhotoFileName")) ? null : reader.GetString(reader.GetOrdinal("ThumbnailPhotoFileName")),
                                 RowGuid = reader.GetGuid(reader.GetOrdinal("RowGuid")),
                                 ModifiedDate = reader.GetDateTime(reader.GetOrdinal("ModifiedDate"))
                             });
@@ -115,8 +113,6 @@ namespace AdventureWorksLT2022.Repositories
                                 SellStartDate = reader.GetDateTime(reader.GetOrdinal("SellStartDate")),
                                 SellEndDate = reader.IsDBNull(reader.GetOrdinal("SellEndDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("SellEndDate")),
                                 DiscontinuedDate = reader.IsDBNull(reader.GetOrdinal("DiscontinuedDate")) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal("DiscontinuedDate")),
-                                ThumbNailPhoto = reader.IsDBNull(reader.GetOrdinal("ThumbNailPhoto")) ? null : (byte[])reader["ThumbNailPhoto"],
-                                ThumbnailPhotoFileName = reader.IsDBNull(reader.GetOrdinal("ThumbnailPhotoFileName")) ? null : reader.GetString(reader.GetOrdinal("ThumbnailPhotoFileName")),
                                 RowGuid = reader.GetGuid(reader.GetOrdinal("RowGuid")),
                                 ModifiedDate = reader.GetDateTime(reader.GetOrdinal("ModifiedDate"))
                             };
@@ -137,11 +133,10 @@ namespace AdventureWorksLT2022.Repositories
                 {
                     command.CommandText = @"
                 INSERT INTO [SalesLT].[Product] 
-                (Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, ThumbNailPhoto,
-                ThumbnailPhotoFileName, RowGuid, ModifiedDate) 
+                (Name, ProductNumber, Color, StandardCost, ListPrice, Size, Weight, ProductCategoryID, ProductModelID, SellStartDate, SellEndDate, DiscontinuedDate, RowGuid, ModifiedDate) 
                 VALUES 
                 (@Name, @ProductNumber, @Color, @StandardCost, @ListPrice, @Size, @Weight, @ProductCategoryID, @ProductModelID, @SellStartDate, @SellEndDate, @DiscontinuedDate,
-                @ThumbNailPhoto, @ThumbnailPhotoFileName, @RowGuid, @ModifiedDate)";
+                @RowGuid, @ModifiedDate)";
                     var nameParameter = command.CreateParameter();
                     nameParameter.ParameterName = "@Name";
                     nameParameter.Value = product.Name;
@@ -206,17 +201,7 @@ namespace AdventureWorksLT2022.Repositories
                     discontinuedDateParameter.ParameterName = "@DiscontinuedDate";
                     discontinuedDateParameter.Value = product.DiscontinuedDate ?? (object)DBNull.Value;
                     command.Parameters.Add(discontinuedDateParameter);
-
-                    var thumbNailPhotoParameter = command.CreateParameter();
-                    thumbNailPhotoParameter.ParameterName = "@ThumbNailPhoto";
-                    thumbNailPhotoParameter.Value = product.ThumbNailPhoto ?? (object)DBNull.Value;
-                    command.Parameters.Add(thumbNailPhotoParameter);
-
-                    var thumbnailPhotoFileNameParameter = command.CreateParameter();
-                    thumbnailPhotoFileNameParameter.ParameterName = "@ThumbnailPhotoFileName";
-                    thumbnailPhotoFileNameParameter.Value = product.ThumbnailPhotoFileName ?? (object)DBNull.Value;
-                    command.Parameters.Add(thumbnailPhotoFileNameParameter);
-
+                    
                     var rowGuidParameter = command.CreateParameter();
                     rowGuidParameter.ParameterName = "@RowGuid";
                     rowGuidParameter.Value = product.RowGuid;
@@ -250,7 +235,7 @@ namespace AdventureWorksLT2022.Repositories
                 UPDATE [SalesLT].[Product] 
                 SET Name = @Name, ProductNumber = @ProductNumber, Color = @Color, StandardCost = @StandardCost, ListPrice = @ListPrice, Size = @Size, Weight = @Weight, 
                     ProductCategoryID = @ProductCategoryID, ProductModelID = @ProductModelID, SellStartDate = @SellStartDate, SellEndDate = @SellEndDate, 
-                    DiscontinuedDate = @DiscontinuedDate, ThumbNailPhoto = @ThumbNailPhoto, ThumbnailPhotoFileName = @ThumbnailPhotoFileName, RowGuid = @RowGuid, 
+                    DiscontinuedDate = @DiscontinuedDate, RowGuid = @RowGuid, 
                     ModifiedDate = @ModifiedDate  WHERE ProductID = @ProductID";
                     var nameParameter = command.CreateParameter();
                     nameParameter.ParameterName = "@Name";
@@ -315,17 +300,7 @@ namespace AdventureWorksLT2022.Repositories
                     var discontinuedDateParameter = command.CreateParameter();
                     discontinuedDateParameter.ParameterName = "@DiscontinuedDate";
                     discontinuedDateParameter.Value = product.DiscontinuedDate ?? (object)DBNull.Value;
-                    command.Parameters.Add(discontinuedDateParameter);
-
-                    var thumbNailPhotoParameter = command.CreateParameter();
-                    thumbNailPhotoParameter.ParameterName = "@ThumbNailPhoto";
-                    thumbNailPhotoParameter.Value = product.ThumbNailPhoto ?? (object)DBNull.Value;
-                    command.Parameters.Add(thumbNailPhotoParameter);
-
-                    var thumbnailPhotoFileNameParameter = command.CreateParameter();
-                    thumbnailPhotoFileNameParameter.ParameterName = "@ThumbnailPhotoFileName";
-                    thumbnailPhotoFileNameParameter.Value = product.ThumbnailPhotoFileName ?? (object)DBNull.Value;
-                    command.Parameters.Add(thumbnailPhotoFileNameParameter);
+                    command.Parameters.Add(discontinuedDateParameter);                                    
 
                     var rowGuidParameter = command.CreateParameter();
                     rowGuidParameter.ParameterName = "@RowGuid";

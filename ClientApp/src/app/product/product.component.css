@@ -1,135 +1,92 @@
-/* Estilo para a mensagem de carregamento */
-.loading-message {
-  text-align: center;
-  font-size: 1.5em;
-  color: #999;
-  margin-top: 20px;
-}
-
-/* Estilo para a mensagem de erro */
-.error-message {
-  text-align: center;
-  font-size: 1.2em;
-  color: #d9534f;
-  margin-top: 20px;
-}
-
-/* Estilo para a mensagem de "nenhum produto encontrado" */
-.no-products-message {
-  text-align: center;
-  font-size: 1.2em;
-  color: #777;
-  margin-top: 20px;
-}
-
-/* Estilo para a lista de produtos */
-.product-list {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 itens por linha */
-  gap: 20px;
-  justify-items: center;
-  margin-top: 20px;
-}
-
-/* Estilo para o cartão de produto */
-.product-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 30px;
-  width: 100%; /* Para garantir que os itens ocupem toda a largura disponível */
-  max-width: 350px; /* Limita a largura máxima para um tamanho adequado */
-  text-align: center;
-  background-color: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-  /* Efeito ao passar o mouse sobre o cartão de produto */
-  .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  }
-
-/* Estilo para as informações do produto */
-.product-info label {
-  display: block;
-  font-weight: bold;
-  margin-top: 10px;
-  font-size: 1.1em;
-  color: #333;
-}
-
-/* Estilo para os inputs de informações do produto */
-.product-info input {
-  width: 100%;
-  margin-top: 5px;
-  padding: 8px;
-  border: 0px solid #ccc;
-  border-radius: 5px;
-  font-size: 1em;
-  color: #555;
-  background-color: #fff;
-  text-align: center;
-}
-
-/* Estilo para a imagem do produto */
-.product-info img {
-  margin-top: 10px;
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
-
-/* Estilo para o botão de compra */
-.buy-button {
-  margin-top: 15px;
-  padding: 12px 25px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.1em;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-  /* Efeito ao passar o mouse sobre o botão de compra */
-  .buy-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-3px);
-  }
-
-/* Estilo para a paginação */
-.pagination {
+/* Loading spinner */
+.loading-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-message {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #3498db;
+  font-weight: bold;
+}
+
+/* Error message */
+.error-message {
+  text-align: center;
+  color: #e74c3c;
+  font-size: 16px;
+  font-weight: bold;
   margin-top: 20px;
 }
 
-  .pagination button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 5px;
-    font-size: 1.1em;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+/* No products message */
+.no-products-message {
+  text-align: center;
+  color: #95a5a6;
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 20px;
+}
+
+/* Table container */
+.product-table-container {
+  padding: 20px;
+  overflow-x: auto;
+}
+
+/* Table styles */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+  .product-table th, .product-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
   }
 
-    .pagination button:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
+  .product-table th {
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+  }
 
-    .pagination button:hover {
-      background-color: #0056b3;
-      transform: translateY(-3px);
-    }
-
-  .pagination span {
-    font-size: 1.2em;
+  .product-table td {
+    background-color: #f9f9f9;
+    font-size: 14px;
     color: #333;
+  }
+
+  .product-table tr:nth-child(even) td {
+    background-color: #f2f2f2;
+  }
+
+  .product-table tr:hover td {
+    background-color: #e1e1e1;
   }

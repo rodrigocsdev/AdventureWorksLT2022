@@ -1,18 +1,25 @@
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+/* Estilo para a navbar */
+.navbar {
+  background-color: #003366; /* Azul escuro */
+  border-bottom: 1px solid #002244; /* Borda mais escura para contraste */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  padding: 15px 0; /* Ajuste de padding para mais espaço */
 }
 
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
+  /* Centralizar o título da navbar */
+  .navbar .navbar-brand {
+    color: white; /* Letra branca */
+    text-align: center; /* Centraliza o texto */
+    font-size: 28px; /* Aumenta o tamanho da fonte para maior destaque */
+    font-weight: 600; /* Fonte em negrito moderado */
+    display: block; /* Faz o link ocupar toda a largura */
+    margin: 0 auto; /* Centraliza o link */
+    text-transform: uppercase; /* Deixa o texto em maiúsculas para um visual mais forte */
+    letter-spacing: 1px; /* Espaçamento entre as letras para dar mais sofisticação */
   }
-}
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
+    /* Efeito hover: tom mais suave de azul */
+    .navbar .navbar-brand:hover {
+      color: #4a76a8; /* Tom suave de azul mais claro */
+      transition: color 0.3s ease; /* Transição suave para o hover */
+    }
